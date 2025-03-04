@@ -6,18 +6,20 @@
 
 body {
     font-family: "Roboto";
+    height: 100dvh; 
+    width: 100dvw;
 }
 
 .content {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 
 .left-nav {
     background-color: var(--left-nav-bg);
- 
+
 }
 
 #todos {
@@ -26,17 +28,19 @@ body {
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     padding: 20px;
 }
-li,ul{
+
+li,
+ul {
     list-style: none;
 }
 
-ul{
+ul {
     padding: 0 0 0.5rem 0.5rem;
 }
-#todo-controls{
-}
 
-.left-nav-titles{
+#todo-controls {}
+
+.left-nav-titles {
     max-width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -45,17 +49,22 @@ ul{
     font-size: clamp(0.5em, 2vw, 1.3em);
     justify-content: center;
 }
-#projects-list{
-    grid-column: 1/span 3;
-}
-.left-nav-titles svg{
-    height: 2em;
-    max-height:100%;
+
+#projects-list a {
+    display: inline-block;
 }
 
-.left-nav-titles a{
+#projects-list {
+    grid-column: 1/span 3;
+}
+
+.left-nav-titles svg {
+    height: 2em;
+    max-height: 100%;
+}
+
+.left-nav-titles a {
     justify-self: center;
     display: block;
     text-decoration: none;
 }
-
