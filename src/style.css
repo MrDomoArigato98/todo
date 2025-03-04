@@ -74,10 +74,14 @@ ul {
 #project{
     transition: all 250ms;
 }
+.more{
+    text-align: center;
+}
 
 #add-todo{
+    width: 90%;
     font-size: clamp(0.5em, 2vw, 1.3em);
-    border: 1px solid black;
+    border: 1px solid grey;
     border-radius: 0.25rem;
     padding: 10px;
     transition: all 250ms;
@@ -95,6 +99,7 @@ ul {
 #add-todo input:focus{
 
 }
+
 #add-todo textarea{
     margin-top: 5px;
     background-color: rgba(0, 0, 0, 0);
@@ -104,7 +109,12 @@ ul {
     padding-bottom: 0.5rem;
     border-radius: 0.25em;
 }
-
+.todos{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+}
 /* todo Buttons */
 #cancel-btn{
     background-color: grey;
