@@ -54,12 +54,12 @@ class Project {
     }
 }
 
-class DisplayTodo {
+class Display {
+    showProject(){
 
-}
+    }
 
-class DisplayProject {
-
+    
 }
 
 const todo1 = new Todo("todo1", "Nothing here", "00.00.00", "1", "default")
