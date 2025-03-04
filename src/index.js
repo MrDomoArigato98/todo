@@ -3,8 +3,6 @@ import "./style.css";
 import gitImg from "./assets/git.png"
 import { format } from "date-fns"
 
-console.log("Hello webpack");
-
 const date = new Date();
 
 class Todo {
