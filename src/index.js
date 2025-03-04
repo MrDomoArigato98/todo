@@ -1,19 +1,18 @@
 import "./reset.css";
 import "./style.css";
 import gitImg from "./assets/git.png"
-import {format} from "date-fns"
+import { format } from "date-fns"
 
 console.log("Hello webpack");
 
 const date = new Date();
 
 class Todo {
-    constructor(title, description, dueDate, priority, project) {
+    constructor(title, description, dueDate, priority) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.project = project
     }
 
     editTitle(title) {
@@ -35,11 +34,6 @@ class Todo {
         todoLogger(this.priority, priority)
         this.priority = priority;
     }
-
-    editProject(project) {
-        todoLogger(this.project, project)
-        this.project = project;
-    }
 }
 
 function todoLogger(old, _new) {
@@ -47,12 +41,40 @@ function todoLogger(old, _new) {
 
 }
 
-class Display {
+class Project {
+    constructor(name) {
+        this.name = name;
+        this.todos = [];
+
+    }
+    addTodo(todo) {
+        this.todos.push(todo)
+    }
+
+    deleteTodo(todo) {
+        this.todos.splice(this.todos.indexOf(todo), 1)
+    }
+}
+
+class DisplayTodo {
 
 }
 
-const todo1 = new Todo("MyTitle", "Nothing here", "00.00.00", "1", "default")
+class DisplayProject {
 
+}
+
+const todo1 = new Todo("todo1", "Nothing here", "00.00.00", "1", "default")
+const todo2 = new Todo("todo2", "Nothing here", "00.00.00", "1", "default")
+const todo3 = new Todo("todo3", "Nothing here", "00.00.00", "1", "default")
+const todo4 = new Todo("todo3", "Nothing here", "00.00.00", "1", "default")
 console.log(todo1)
-
 todo1.editTitle("New Title")
+
+const work = new Project("Test")
+work.addTodo(todo1)
+work.addTodo(todo2)
+
+console.log(work)
+work.deleteTodo(todo1)
+console.log(work)
