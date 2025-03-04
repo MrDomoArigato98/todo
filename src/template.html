@@ -27,14 +27,23 @@
                     <ul id="default"><a href=""># default</a> </ul>
                     <ul id="work"><a href=""># work</a></ul>
                     <ul id="home"><a href=""># home</a></ul>
-                    
                 </li>
-                
             </div>
         </div>
 
         <div id="todos">
-            Here's my todos
+            <h1 id="project">Work</h1>
+            <div id="todo">
+                <h2>Title goes here</h2>
+                <input type="text" name="title" id="title" placeholder="Title">
+                <p>Description:</p>
+                <input type="text" name="descrpiton" id="description" placeholder="Description">
+                <p>Due date: goes here</p>
+                <input type="date" name="due-date" id="due-date">
+                <p>Priority: (Could be colour coded)</p>
+                <button>Add</button>
+                <button>Cancel</button>
+            </div>
         </div>
 
         <template id="project-template">
@@ -43,7 +52,7 @@
             </ul>
         </template>
 
-        <template id="task-template">
+        <template id="todo-template">
 
         </template>
     </div>

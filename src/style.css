@@ -70,3 +70,13 @@ ul {
     display: block;
     text-decoration: none;
 }
+#project{
+
+}
+
+#todo{
+    font-size: clamp(0.5em, 2vw, 1.3em);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
