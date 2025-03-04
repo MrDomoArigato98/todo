@@ -38,7 +38,9 @@ ul {
     padding: 0 0 0.5rem 0.5rem;
 }
 
-#todo-controls {}
+#todo-controls {
+    margin-bottom: 2em;
+}
 
 .left-nav-titles {
     max-width: 100%;
