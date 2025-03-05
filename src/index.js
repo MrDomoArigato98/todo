@@ -12,7 +12,6 @@ const stPattysDay = new Date('2020/03/17');
 const displayNavigation = (function (){
     const defaultProject = new Project("default");
     const workProject = new Project("work");
-
     const projectsListElement = document.getElementById("projects-list");
 
     console.log(projectsListElement);
@@ -34,8 +33,12 @@ const displayNavigation = (function (){
         })
     }
 
-    const createLi = (id) => {
+    const displayTodos = (project) => {
+        //This should take in a project object, loop over the todos and create each of the elements
+    }
 
+    const switchProject = () => {
+        //This should swap out what the current project is on the page and display its todos
     }
 
     displayProjects(projectsList)
