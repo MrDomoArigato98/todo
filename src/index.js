@@ -2,69 +2,46 @@ import "./reset.css";
 import "./style.css";
 import gitImg from "./assets/git.png"
 import { format } from "date-fns"
+import { Todo } from "../todo";
 import { addTodo } from "./displayInput";
+import { Project } from "../projects";
 
 const date = new Date();
 const stPattysDay = new Date('2020/03/17');
 
-class Todo {
-    constructor(title, description, dueDate, priority) {
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
+const displayNavigation = (function (){
+    const defaultProject = new Project("default");
+    const workProject = new Project("work");
+
+    const projectsListElement = document.getElementById("projects-list");
+
+    console.log(projectsListElement);
+    
+    const projectsList = [] // This will contain the list of Project objects. Each Project object has a list of todo objects inside of it
+    projectsList.push(defaultProject)
+    projectsList.push(workProject)
+    
+    const displayProjects = (projectsList) => {
+        projectsList.forEach(project => {
+            const listItem = document.createElement("li")
+            const link = document.createElement("button")
+            
+            listItem.setAttribute("id", project.name)
+            link.textContent = "# "+ project.name;
+            listItem.appendChild(link)
+
+            projectsListElement.appendChild(listItem)
+        })
     }
 
-    editTitle(title) {
-        todoLogger(this.title, title)
-        this.title = title;
-    }
-
-    editDescription(description) {
-        todoLogger(this.description, description)
-        this.description = description;
-    }
-
-    editDueDate(dueDate) {
-        todoLogger(this.dueDate, dueDate)
-        this.dueDate = dueDate;
-    }
-
-    editPriority(priority) {
-        todoLogger(this.priority, priority)
-        this.priority = priority;
-    }
-}
-
-function todoLogger(old, _new) {
-    console.log("Old value: " + old + ", set to new value: " + _new)
-
-}
-
-class Project {
-    constructor(name) {
-        this.name = name;
-        this.todos = [];
-
-    }
-    addTodo(todo) {
-        this.todos.push(todo)
-    }
-
-    deleteTodo(todo) {
-        this.todos.splice(this.todos.indexOf(todo), 1)
-    }
-}
-
-class Display {
-    showProject(){
+    const createLi = (id) => {
 
     }
 
+    displayProjects(projectsList)
+})();
 
-}
 
-addTodo.getInput();
 // createTodo.resetInput();
 
 // const todo1 = new Todo("todo1", "Nothing here", "00.00.00", "1", "default")

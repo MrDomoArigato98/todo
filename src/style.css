@@ -53,8 +53,13 @@ ul {
     justify-content: center;
 }
 
-#projects-list a {
+#projects-list button {
     display: inline-block;
+    border: none;
+    /* background-color: rgba(0, 0, 0, 0); */
+    cursor: pointer;
+
+    
 }
 
 #projects-list {
@@ -101,7 +106,6 @@ ul {
 }
 
 #title{
-
     font-weight: bold;
 }
 #priority-btn{
