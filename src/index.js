@@ -2,9 +2,9 @@ import "./reset.css";
 import "./style.css";
 import gitImg from "./assets/git.png"
 import { format } from "date-fns"
-import { Todo } from "../todo";
+import { Todo } from "./todo";
 import { addTodo } from "./displayInput";
-import { Project } from "../projects";
+import { Project } from "./projects";
 
 const date = new Date();
 const stPattysDay = new Date('2020/03/17');

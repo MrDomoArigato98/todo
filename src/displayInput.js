@@ -1,4 +1,4 @@
-import { Todo } from "../todo";
+import { Todo } from "./todo";
 
 const addTodo = (function () {
     const addTodoDiv = document.getElementById("add-todo");
