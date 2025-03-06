@@ -3,30 +3,30 @@ import "./style.css";
 import gitImg from "./assets/git.png"
 import { format } from "date-fns"
 import { Todo } from "./todo";
-import { addTodo } from "./displayInput";
+import { addTodo } from "./addTodo";
 import { Project } from "./projects";
 
 const date = new Date();
 const stPattysDay = new Date('2020/03/17');
 
-const displayNavigation = (function (){
+const displayNavigation = (function () {
     const defaultProject = new Project("default");
     const workProject = new Project("work");
     const projectsListElement = document.getElementById("projects-list");
 
     console.log(projectsListElement);
-    
+
     const projectsList = [] // This will contain the list of Project objects. Each Project object has a list of todo objects inside of it
     projectsList.push(defaultProject)
     projectsList.push(workProject)
-    
+
     const displayProjects = (projectsList) => {
         projectsList.forEach(project => {
             const listItem = document.createElement("li")
             const link = document.createElement("button")
-            
+
             listItem.setAttribute("id", project.name)
-            link.textContent = "# "+ project.name;
+            link.textContent = "# " + project.name;
             listItem.appendChild(link)
 
             projectsListElement.appendChild(listItem)
@@ -41,7 +41,29 @@ const displayNavigation = (function (){
         //This should swap out what the current project is on the page and display its todos
     }
 
-    displayProjects(projectsList)
+    const todoButtons = () => {
+        const div = document.querySelector('.todos-display')
+        console.log(div)
+        div.addEventListener("click", (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                console.log(event.target)
+            }
+        })
+    }
+
+    const projectButtons = () => {
+        const div = document.querySelector('.left-nav')
+        console.log(div)
+        div.addEventListener("click", (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                console.log("clicking" + event.target.textContent)
+            }
+        })
+    }
+
+    displayProjects(projectsList);
+    projectButtons();
+    todoButtons();
 })();
 
 

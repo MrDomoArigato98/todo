@@ -66,19 +66,7 @@ ul {
 }
 
 #projects-list {
-    grid-column: 1/span 3;
-}
-
-
-.left-nav-titles svg {
-    height: 2em;
-    max-height: 100%;
-}
-
-.left-nav-titles a {
-    justify-self: center;
-    display: block;
-    text-decoration: none;
+    grid-column: 1/ span 3;
 }
 
 #project {
@@ -118,7 +106,6 @@ ul {
     border-radius: 0.25em
 }
 
-#add-todo input:focus {}
 
 #title {
     font-weight: bold;
@@ -222,7 +209,22 @@ ul {
     height: 100%;
     width: 100%;
 }
+svg {
+    pointer-events: none;
+}
 #view-todo svg{
+    height: 100%;
+    width: 100%;
+}
+#add-projects{
+    justify-self: center;
+    border: none;
+    cursor: pointer;
+    background: none;
+    width: 3rem;
+    height: 3rem;
+}
+#add-projects svg{
     height: 100%;
     width: 100%;
 }
