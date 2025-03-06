@@ -12,11 +12,11 @@ const displayNavigation = (function () {
     const addTodoDiv = document.getElementById("add-todo");
     const addTodoButtons = addTodoDiv.querySelectorAll("button");
     const workProject = new Project("work");
-    
+
     const defaultProject = new Project("default");
     let currentProject = defaultProject;
 
-    
+
     const projectsListElement = document.getElementById("projects-list");
 
     console.log(projectsListElement);
@@ -82,10 +82,6 @@ const displayNavigation = (function () {
     //These are the buttons on the "Got More todo?" card
     addTodoButtons.forEach(button => {
         button.addEventListener("click", function () {
-            if (button.id == 'priority-btn') {
-                button.classList.toggle("priority-active")
-            }
-
             if (button.id == 'cancel-btn') {
                 console.log("cancel")
                 resetInput()
@@ -120,32 +116,21 @@ const displayNavigation = (function () {
         const title = document.getElementById("title").value;
         const description = document.getElementById("description").value;
         const dueDate = document.getElementById("due-date").value;
-        const prioButton = document.getElementById("priority-btn");
+        const priority = document.getElementById("priority-select").value
 
-        let priority;
-        if (isPriority(prioButton)) {
-            priority = "Priority!"
-        } else {
-            priority = 'Not that important'
+        if ( title && dueDate && priority) {
+            console.log(title, description, dueDate, priority)
+            const a = createTodo(title, description, dueDate, priority)
+            currentProject.push(a)
+            console.log(currentProject)
         }
-        console.log(title, description, dueDate, priority)
-        const a = createTodo(title, description, dueDate, priority)
-        currentProject.push(a)
-        console.log(currentProject)
     }
 
     const resetInput = () => {
         document.getElementById("title").value = ""
         document.getElementById("description").value = ""
         document.getElementById("due-date").value = ""
-    }
-
-    const isPriority = (button) => {
-        if (button.classList.contains("priority-active")) {
-            return true
-        } else {
-            return false
-        }
+        document.getElementById("priority-select").value = ""
     }
 
     displayProjects(projectsList);
