@@ -3,12 +3,15 @@ import "./style.css";
 import gitImg from "./assets/git.png"
 import { format } from "date-fns"
 import { Todo, createTodo } from "./todo";
+import { store } from "./storage";
 import { Project } from "./projects";
 
 const date = new Date();
 const stPattysDay = new Date('2020/03/17');
 
 const displayNavigation = (function () {
+
+    //Working with local storage should probably go at the top
     const addTodoDiv = document.getElementById("add-todo");
     const addTodoButtons = addTodoDiv.querySelectorAll("button");
     const workProject = new Project("work");
@@ -85,14 +88,11 @@ const displayNavigation = (function () {
             if (button.id == 'cancel-btn') {
                 console.log("cancel")
                 resetInput()
-
             }
-
             if (button.id == 'add-btn') {
                 getInput();
                 displayTodos(currentProject)
             }
-
         })
     })
 
@@ -137,6 +137,8 @@ const displayNavigation = (function () {
     switchProject(currentProject);
     projectButtons();
     todoButtons();
+
+    
 })();
 
 // createTodo.resetInput();
