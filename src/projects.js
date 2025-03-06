@@ -4,12 +4,12 @@ class Project {
         this.todos = [];
 
     }
-    addTodo(todo) {
+    push(todo) {
         this.todos.push(todo)
     }
 
-    deleteTodo(todo) {
-        this.todos.splice(this.todos.indexOf(todo), 1)
+    deleteTodo(index) {
+        this.todos.splice(index, 1)
     }
 }
 

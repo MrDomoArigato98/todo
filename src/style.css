@@ -182,7 +182,9 @@ ul {
 #project {
     font-size: clamp(0.5em, 5vw, 3em)
 }
-
+template{
+    display: none;
+}
 .todo-btn:hover,
 .todo-btn:focus {
     background-color: #fb8332;
@@ -205,14 +207,14 @@ ul {
     height: 3rem;
 }
 
-#delete-todo svg{
+.delete-todo svg{
     height: 100%;
     width: 100%;
 }
 svg {
     pointer-events: none;
 }
-#view-todo svg{
+.view-todo svg{
     height: 100%;
     width: 100%;
 }

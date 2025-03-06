@@ -32,4 +32,9 @@ function todoLogger(old, _new) {
 
 }
 
-export { Todo }
+const createTodo = (title, description, dueDate, priority) => {
+    const todo = new Todo(title, description, dueDate, priority)
+    return todo
+}
+
+export { Todo, createTodo }
