@@ -118,7 +118,7 @@ const displayNavigation = (function () {
         const dueDate = document.getElementById("due-date").value;
         const priority = document.getElementById("priority-select").value
 
-        if ( title && dueDate && priority) {
+        if (title && dueDate && priority) {
             console.log(title, description, dueDate, priority)
             const a = createTodo(title, description, dueDate, priority)
             currentProject.push(a)
