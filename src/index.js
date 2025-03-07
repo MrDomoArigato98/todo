@@ -11,23 +11,37 @@ const stPattysDay = new Date('2020/03/17');
 
 const displayNavigation = (function () {
 
-    //Working with local storage should probably go at the top
+    const projectsList = [] // This will contain the list of Project objects. Each Project object has a list of todo objects inside of it
     const addTodoDiv = document.getElementById("add-todo");
     const addTodoButtons = addTodoDiv.querySelectorAll("button");
-    const workProject = new Project("work");
+    let defaultProject;
+    let currentProject
+    const projectsLocalStorage = store.loadProjects()
 
-    const defaultProject = new Project("default");
-    let currentProject = defaultProject;
+    //Working with local storage should probably go at the top    
+    if (projectsLocalStorage[0]!==null) {
+        projectsLocalStorage.forEach((project, index) => {
+            const storedProject = new Project(project.name);
+            console.log("Loading "+ project.name + " project from local storage")
+            projectsList.push(storedProject)
 
+            if (project.todos) {
+                project.todos.forEach((todo) => {
+                    storedProject.push(todo)
+                })
+            }
+            currentProject = storedProject;
+        })
+    }else{
+        defaultProject = new Project("default");
+        currentProject = defaultProject;
+        projectsList.push(defaultProject)
+    }
 
     const projectsListElement = document.getElementById("projects-list");
 
     console.log(projectsListElement);
-
-    const projectsList = [] // This will contain the list of Project objects. Each Project object has a list of todo objects inside of it
-    projectsList.push(defaultProject)
-    projectsList.push(workProject)
-    console.log(projectsList)
+    console.log(projectsList.name)
 
     const displayProjects = (projectsList) => {
         projectsList.forEach(project => {
@@ -56,6 +70,7 @@ const displayNavigation = (function () {
             clone.querySelector('.todo').setAttribute(project.name, index)
             parent.appendChild(clone)
         })
+        store.saveProject(project)
     }
 
     const switchProject = (project) => {
@@ -92,6 +107,7 @@ const displayNavigation = (function () {
             if (button.id == 'add-btn') {
                 getInput();
                 displayTodos(currentProject)
+
             }
         })
     })
@@ -133,27 +149,12 @@ const displayNavigation = (function () {
         document.getElementById("priority-select").value = ""
     }
 
-    displayProjects(projectsList);
-    switchProject(currentProject);
-    projectButtons();
-    todoButtons();
-
     
+    switchProject(currentProject);
+    displayTodos(currentProject)
+    todoButtons();
+    projectButtons();
+    displayProjects(projectsList);
+
+
 })();
-
-// createTodo.resetInput();
-
-// const todo1 = new Todo("todo1", "Nothing here", "00.00.00", "1", "default")
-// const todo2 = new Todo("todo2", "Nothing here", "00.00.00", "1", "default")
-// const todo3 = new Todo("todo3", "Nothing here", "00.00.00", "1", "default")
-// const todo4 = new Todo("todo3", "Nothing here", "00.00.00", "1", "default")
-// console.log(todo1)
-// todo1.editTitle("New Title")
-
-// const work = new Project("Test")
-// work.appendTodo(todo1)
-// work.appendTodo(todo2)
-
-// console.log(work)
-// work.deleteTodo(todo1)
-// console.log(work)

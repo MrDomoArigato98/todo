@@ -8,14 +8,20 @@ const store = (function (){
         console.log(JSON.parse(newObject));
     }
 
-    const loadProject = (project) => {
-
+    const loadProjects = () => {
+        for (let i = 0; i <= localStorage.length; i++){
+            // do something with localStorage.getItem(localStorage.key(i));
+            const projectListJSON = [];
+            projectListJSON.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+            console.log(projectListJSON)
+            return(projectListJSON)
+        }
     }
 
     const deleteTodo = (project, index) => {
 
     }
-    return { saveProject, loadProject }
+    return { saveProject, loadProjects }
 })();
 
 export { store}
