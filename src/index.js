@@ -15,14 +15,14 @@ const displayNavigation = (function () {
     const addTodoDiv = document.getElementById("add-todo");
     const addTodoButtons = addTodoDiv.querySelectorAll("button");
     let defaultProject;
-    let currentProject
+    let currentProject;
     const projectsLocalStorage = store.loadProjects()
 
     //Working with local storage should probably go at the top    
-    if (projectsLocalStorage[0]!==null) {
+    if (projectsLocalStorage[0]!= null) {
         projectsLocalStorage.forEach((project, index) => {
             const storedProject = new Project(project.name);
-            console.log("Loading "+ project.name + " project from local storage")
+            console.log("Loading " + project.name + " project from local storage")
             projectsList.push(storedProject)
 
             if (project.todos) {
@@ -33,10 +33,12 @@ const displayNavigation = (function () {
             currentProject = storedProject;
         })
     }else{
-        defaultProject = new Project("default");
-        currentProject = defaultProject;
-        projectsList.push(defaultProject)
+        console.log("abcd")
+        
+        currentProject = new Project("default");
+        projectsList.push(currentProject)
     }
+    console.log(currentProject)
 
     const projectsListElement = document.getElementById("projects-list");
 
@@ -44,6 +46,9 @@ const displayNavigation = (function () {
     console.log(projectsList.name)
 
     const displayProjects = (projectsList) => {
+        while (projectsListElement.firstChild) {
+            projectsListElement.firstChild.remove();
+        }
         projectsList.forEach(project => {
             const listItem = document.createElement("li")
             const button = document.createElement("button")
@@ -71,6 +76,11 @@ const displayNavigation = (function () {
             parent.appendChild(clone)
         })
         store.saveProject(project)
+
+        projectsList.forEach((proj) => {
+            store.saveProject(proj)
+        })
+
     }
 
     const switchProject = (project) => {
@@ -93,6 +103,8 @@ const displayNavigation = (function () {
                     let index = todo.getAttribute(currentProject.name)
                     currentProject.deleteTodo(index)
                     event.target.closest(".todo").remove();
+                    store.deleteProject(currentProject)
+                    store.saveProject(currentProject)
                 }
             }
         })
@@ -112,18 +124,47 @@ const displayNavigation = (function () {
         })
     })
 
+
+
     const projectButtons = () => {
         const div = document.querySelector('.left-nav')
         console.log(div)
         div.addEventListener("click", (event) => {
             if (event.target.tagName === 'BUTTON') {
-                console.log("clicking ID: " + event.target.id)
+                if (event.target.id == "add-projects") {
+                    const inputField = document.createElement("input")
+                    inputField.classList.add("project-input")
+                    const ul = document.getElementById("projects-list")
+                    ul.appendChild(inputField)
 
-                const project = projectsList.find((proj) => proj.name == event.target.id)
-                console.log(project)
-                if (project) {
-                    switchProject(project)
-                    displayTodos(project)
+                    inputField.addEventListener("keydown", (event) => {
+                        if (event.key === "Enter") {
+                            if (inputField.value) {
+                                const projectName = inputField.value;
+                                if (projectsList.some(project => project.name == projectName)) 
+                                {
+                                    console.log("already exists")
+
+                                } else {
+                                    const newProject = new Project(projectName)
+                                    projectsList.push(newProject)
+                                    console.log(projectsList)
+                                    displayProjects(projectsList)
+                                    store.saveProject(newProject)
+                                }
+
+                            }
+                        }
+                    })
+
+                } else {
+                    console.log("clicking ID: " + event.target.id)
+                    const project = projectsList.find((proj) => proj.name == event.target.id)
+                    console.log(project)
+                    if (project) {
+                        switchProject(project)
+                        displayTodos(project)
+                    }
                 }
             }
         })
@@ -149,7 +190,6 @@ const displayNavigation = (function () {
         document.getElementById("priority-select").value = ""
     }
 
-    
     switchProject(currentProject);
     displayTodos(currentProject)
     todoButtons();
