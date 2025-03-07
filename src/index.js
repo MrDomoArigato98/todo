@@ -72,6 +72,19 @@ const displayNavigation = (function () {
             clone.querySelector('.due-date').textContent = todo.dueDate;
             clone.querySelector('.todo-description').textContent = todo.description;
             clone.querySelector('.todo').setAttribute(project.name, index)
+
+
+            if(todo.priority=="Low"){
+                clone.querySelector('.todo').classList.add("low")
+            }
+            if(todo.priority=="Medium"){
+                // clone.classList.add("medium");
+                clone.querySelector('.todo').classList.add("medium")
+            }
+            if(todo.priority=="High"){
+                // clone.classList.add("medium");
+                clone.querySelector('.todo').classList.add("high")
+            }
             parent.appendChild(clone)
         })
         store.saveProject(project)
@@ -163,13 +176,6 @@ const displayNavigation = (function () {
             }
         })
     }
-    const editGetInput = () => {
-
-
-
-    }
-
-
     //These are the buttons on the "Got More todo?" card
     addTodoButtons.forEach(button => {
         button.addEventListener("click", function () {

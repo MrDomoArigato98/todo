@@ -50,9 +50,11 @@ ul {
     font-size: clamp(0.5em, 2vw, 1.3em);
     justify-content: center;
 }
-.hidden{
+
+.hidden {
     display: none;
 }
+
 #projects-list button {
     margin: 2px;
     display: inline-block;
@@ -87,16 +89,29 @@ ul {
     text-align: center;
 }
 
+.low {
+    background-color: lightgreen;
+}
+
+.medium {
+    background-color: yellow
+}
+
+.high {
+    background-color: red;
+}
+
 dialog {
     justify-self: center;
     align-self: center;
-    background-color: #ECE8EF;   
+    background-color: #ECE8EF;
     position: fixed;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
 #add-todo {
     width: 90%;
     font-size: clamp(0.5em, 2vw, 1.3em);
@@ -106,7 +121,8 @@ dialog {
     transition: all 250ms;
     display: grid;
 }
-#edit-todo{
+
+#edit-todo {
     width: 90%;
     font-size: clamp(0.5em, 2vw, 1.3em);
     border-radius: 0.25rem;
@@ -114,7 +130,9 @@ dialog {
     transition: all 250ms;
     display: grid;
 }
-#add-todo input, #edit-todo input {
+
+#add-todo input,
+#edit-todo input {
     border: none;
     margin-top: 5px;
     background-color: rgba(0, 0, 0, 0);
@@ -224,10 +242,13 @@ template {
     height: 3rem;
 }
 
-.delete-todo svg, .view-todo svg, .edit-todo svg {
+.delete-todo svg,
+.view-todo svg,
+.edit-todo svg {
     height: 100%;
     width: 100%;
 }
+
 #add-projects svg {
     height: 100%;
     width: 100%;
@@ -245,4 +266,3 @@ svg {
     width: 3rem;
     height: 3rem;
 }
-
