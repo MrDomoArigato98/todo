@@ -14,6 +14,31 @@
 </head>
 
 <body>
+
+    <dialog id="dialog">
+        <div class="todos-input">
+        <div class="dialog-container">
+            <h1 class="more">Edit todo</h1>
+            <div id="edit-todo">
+                <input type="text" name="title" id="edit-title" placeholder="Required: Todo title">
+                <textarea name="description" id="edit-description" placeholder="Optional. Describe your task!"></textarea>
+                <p><b>Due date:</b></p>
+                <input type="date" name="due-date" id="edit-due-date">
+
+                <label for="priority-select"><b>Priority:*</b></label>
+                <select name="priority" id="edit-priority-select" required>
+                    <option value="">Select the priority</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+                <div class="buttons">
+                    <button class="todo-btn" id="edit-btn">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </dialog>
     <div class="content">
         <div class="left-nav">
             <div id="projects" class="left-nav-titles">
@@ -64,6 +89,7 @@
             </div>
             <div class="todos-display">
             </div>
+            
 
         </div>
 

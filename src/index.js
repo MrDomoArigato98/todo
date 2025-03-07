@@ -19,7 +19,7 @@ const displayNavigation = (function () {
     const projectsLocalStorage = store.loadProjects()
 
     //Working with local storage should probably go at the top    
-    if (projectsLocalStorage[0]!= null) {
+    if (projectsLocalStorage[0] != null) {
         projectsLocalStorage.forEach((project, index) => {
             const storedProject = new Project(project.name);
             console.log("Loading " + project.name + " project from local storage")
@@ -32,7 +32,7 @@ const displayNavigation = (function () {
             }
             currentProject = storedProject;
         })
-    }else{
+    } else {
         currentProject = new Project("default");
         projectsList.push(currentProject)
     }
@@ -104,14 +104,72 @@ const displayNavigation = (function () {
                     event.target.closest(".todo").remove();
                     store.deleteProject(currentProject)
                     store.saveProject(currentProject)
-                }else if(event.target.classList.contains("view-todo")){
+
+                } else if (event.target.classList.contains("view-todo")) {
                     const todo = event.target.closest(".todo")
                     const desc = todo.querySelector(".todo-description")
                     desc.classList.toggle("hidden")
                 }
+                if (event.target.classList.contains("edit-todo")) {
+                    const dialog = document.getElementById("dialog")
+
+                    const todo = event.target.closest(".todo")
+                    let index = todo.getAttribute(currentProject.name)
+                    const projTodo = currentProject.todos[index]
+                    console.log(projTodo.title)
+
+                    dialog.querySelector("#edit-title").value = projTodo.title
+                    const editTitle = dialog.querySelector("#edit-title")
+
+                    dialog.querySelector("#edit-description").value = projTodo.description
+                    const editDesc = dialog.querySelector("#edit-description")
+
+                    dialog.querySelector("#edit-due-date").value = projTodo.dueDate
+                    const editDueDate = dialog.querySelector("#edit-due-date")
+
+                    dialog.querySelector("#edit-priority-select").value = projTodo.priority
+                    const editPrio = dialog.querySelector("#edit-priority-select")
+
+                    dialog.show()
+                    dialog.focus()
+
+                    const edit = document.getElementById("edit-btn")
+                    edit.addEventListener("click", function () {
+                        const title = dialog.querySelector("#edit-title").value;
+                        const description = dialog.querySelector("#edit-description").value 
+                        const dueDate = dialog.querySelector("#edit-due-date").value
+                        const priority = dialog.querySelector("#edit-priority-select").value
+
+                        if (title && dueDate && priority) {
+                            // console.log(title, description, dueDate, priority)
+                            // const a = createTodo(title, description, dueDate, priority)
+                            // currentProject.push(a)
+                            // console.log(currentProject)
+                            projTodo.title = title;
+                            projTodo.description = description;
+                            projTodo.dueDate = dueDate;
+                            projTodo.priority= priority
+                            store.deleteProject(currentProject)
+                            store.saveProject(currentProject)
+                            displayTodos(currentProject)
+                            console.log(projTodo)
+                            dialog.close();
+                        }
+                    })
+                    console.log(editTitle);
+
+
+                }
             }
         })
     }
+    const editGetInput = () => {
+
+
+
+    }
+
+
     //These are the buttons on the "Got More todo?" card
     addTodoButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -144,8 +202,7 @@ const displayNavigation = (function () {
                         if (event.key === "Enter") {
                             if (inputField.value) {
                                 const projectName = inputField.value;
-                                if (projectsList.some(project => project.name == projectName)) 
-                                {
+                                if (projectsList.some(project => project.name == projectName)) {
                                     console.log("already exists")
 
                                 } else {
@@ -172,6 +229,8 @@ const displayNavigation = (function () {
             }
         })
     }
+
+
     const getInput = () => {
         const title = document.getElementById("title").value;
         const description = document.getElementById("description").value;

@@ -87,6 +87,16 @@ ul {
     text-align: center;
 }
 
+dialog {
+    justify-self: center;
+    align-self: center;
+    background-color: #ECE8EF;   
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 #add-todo {
     width: 90%;
     font-size: clamp(0.5em, 2vw, 1.3em);
@@ -96,8 +106,15 @@ ul {
     transition: all 250ms;
     display: grid;
 }
-
-#add-todo input {
+#edit-todo{
+    width: 90%;
+    font-size: clamp(0.5em, 2vw, 1.3em);
+    border-radius: 0.25rem;
+    padding: 10px;
+    transition: all 250ms;
+    display: grid;
+}
+#add-todo input, #edit-todo input {
     border: none;
     margin-top: 5px;
     background-color: rgba(0, 0, 0, 0);
