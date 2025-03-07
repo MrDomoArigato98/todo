@@ -207,18 +207,17 @@ template {
     height: 3rem;
 }
 
-.delete-todo svg {
+.delete-todo svg, .view-todo svg, .edit-todo svg {
+    height: 100%;
+    width: 100%;
+}
+#add-projects svg {
     height: 100%;
     width: 100%;
 }
 
 svg {
     pointer-events: none;
-}
-
-.view-todo svg {
-    height: 100%;
-    width: 100%;
 }
 
 #add-projects {
@@ -230,7 +229,3 @@ svg {
     height: 3rem;
 }
 
-#add-projects svg {
-    height: 100%;
-    width: 100%;
-}
