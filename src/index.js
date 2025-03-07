@@ -33,8 +33,6 @@ const displayNavigation = (function () {
             currentProject = storedProject;
         })
     }else{
-        console.log("abcd")
-        
         currentProject = new Project("default");
         projectsList.push(currentProject)
     }
@@ -72,6 +70,7 @@ const displayNavigation = (function () {
             const clone = template.content.cloneNode(true);
             clone.querySelector('.todo-title').textContent = todo.title;
             clone.querySelector('.due-date').textContent = todo.dueDate;
+            clone.querySelector('.todo-description').textContent = todo.description;
             clone.querySelector('.todo').setAttribute(project.name, index)
             parent.appendChild(clone)
         })
@@ -105,6 +104,10 @@ const displayNavigation = (function () {
                     event.target.closest(".todo").remove();
                     store.deleteProject(currentProject)
                     store.saveProject(currentProject)
+                }else if(event.target.classList.contains("view-todo")){
+                    const todo = event.target.closest(".todo")
+                    const desc = todo.querySelector(".todo-description")
+                    desc.classList.toggle("hidden")
                 }
             }
         })
